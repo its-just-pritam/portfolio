@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Pritam Mallick - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #000000;
+            font-family: 'Fira Code', monospace;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('sr2e015744883aws3.webp'); /* Replace with the actual image URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Ensures slower scroll speed */
+            opacity: 0.2; /* Makes it semi-transparent */
+            z-index: -1; /* Makes sure it's behind the content */
+        }
+        ul {
+            margin: 0; /* Reset default margin */
+            padding: 0; /* Reset default padding */
+        }
+        ul li {
+            margin-left: 1.5em; /* Adjust the left margin for indentation */
+            text-indent: -1.5em; /* Adjust text indentation to align bullet points */
+        }
+        .neon-button {
+            border: 2px solid #86EFAC;
+            box-shadow: 0 0 4px #86EFAC, 0 0 4px #86EFAC;
+        }
+        .neon-button:hover {
+            box-shadow: 0 0 10px #86EFAC, 0 0 10px #86EFAC;
+        }
+        .tab-header {
+            display: inline-block;
+            background: #676373; /* Tab background color */
+            color: #fffff; /* Tab text color */
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem 1rem 1rem;
+            border-radius: 0.5rem 0.5rem 0 0; /* Rounded top corners */
+            position: relative;
+            top: 0.5rem; /* Pulls the tab above the card */
+            margin-top: 1rem; /* Adjust for alignment with card */
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Slight shadow for depth */
+        }
+        .terminal-card {
+            background: #090614;
+            border: 2px solid #676373;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', Courier, monospace; /* Monospace font for terminal style */
+            color: #c7c7c7;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                border-color 0.4s ease, 
+                box-shadow 0.4s ease;
+        }
+        .terminal-card::after {
+            content: "_";
+            color: #00FF00;
+            font-weight: bold;
+            animation: blink 1s steps(2, start) infinite; /* Blinking effect */
+            position: absolute;
+            bottom: 1.5rem; /* Align cursor to text */
+            right: 1rem; /* Position cursor after text */
+        }
+        .terminal-card:hover {
+            transform: scale(1.01);
+            border-color: #00FF00; /* Change border color on hover */
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.7); /* Enhance shadow on hover */
+        }
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+        .terminal-card h3 {
+            color: #00FF00;
+            margin: 0;
+        }
+        .terminal-card p {
+            color: #9a9a9a;
+            margin: 0;
+            padding-top: 0.5rem;
+        }
+        .glow {
+            text-shadow: 0 0 10px rgba(134, 239, 172, 0.7), 0 0 20px rgba(134, 239, 172, 0.7);
+            animation: neonBlink 1.5s infinite steps(1);
+        }
+
+        @keyframes neonBlink {
+            0% {
+                text-shadow: 0 0 5px #86EFAC, 0 0 10px #86EFAC;
+            }
+            10% {
+                text-shadow: 0 0 0px #86EFAC, 0 0 0px rgba(134, 239, 172, 0);
+            }
+            20% {
+                text-shadow: 0 0 7px #86EFAC, 0 0 12px rgba(134, 239, 172, 0.7);
+            }
+            30% {
+                text-shadow: 0 0 0px #86EFAC, 0 0 0px rgba(134, 239, 172, 0);
+            }
+            40% {
+                text-shadow: 0 0 8px #86EFAC, 0 0 14px rgba(134, 239, 172, 0.7);
+            }
+            60% {
+                text-shadow: 0 0 0px #86EFAC, 0 0 0px rgba(134, 239, 172, 0);
+            }
+            70% {
+                text-shadow: 0 0 5px #86EFAC, 0 0 10px rgba(134, 239, 172, 0.7);
+            }
+            100% {
+                text-shadow: 0 0 0px #86EFAC, 0 0 0px rgba(134, 239, 172, 0);
+            }
+        }
+        .status-tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.5rem; /* Rounded corners */
+            font-size: 1rem; /* Font size */
+            font-weight: bold;
+            color: #090614; /* Text color */
+            margin: 0.5rem 0.5rem 0.5rem 0rem; /* Space between tags */
+            background-color: #86EFAC;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none; /* Hidden by default */
+            position: absolute; /* Positioned absolutely */
+            background-color: #f9f9f9; /* Dropdown background */
+            min-width: 160px; /* Minimum width */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            z-index: 1; /* On top of other elements */
+        }
+        .dropdown-content a {
+            color: black; /* Link color */
+            padding: 12px 16px; /* Padding */
+            text-decoration: none; /* No underline */
+            display: block; /* Block display */
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1; /* Hover effect */
+        }
+        .dropdown:hover .dropdown-content {
+            display: block; /* Show the dropdown on hover */
+        }
+        .image-section {
+            height: 100vh; /* Full viewport height for this section */
+            background-color: #000; /* Black background for contrast */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .balloon {
+            position: absolute;
+            padding: 20px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            width: 300px;
+            height: 100px;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .balloon a {
+            text-decoration: none;
+            color: black;
+        }
+        .left-balloon {
+            left: 550px; /* Adjust the position */
+            top: 455%;
+            transform: translateY(-30%);
+            background-color: #ff4d4d;
+            box-shadow:
+                0px 0px 0px 4px #ff0000, /* Outer red pixel border */
+                -4px 0px 0px 4px #b30000, /* Left shadow */
+                4px 0px 0px 4px #b30000,  /* Right shadow */
+                0px -4px 0px 4px #b30000, /* Top shadow */
+                0px 4px 0px 4px #b30000,  /* Bottom shadow */
+                8px 0px 0px 4px #7a0000;  /* Extra pixel width for depth */
+        }
+        .right-balloon {
+            right: 550px; /* Adjust the position */
+            top: 455%;
+            transform: translateY(-30%);
+            background-color: #4040ff;
+            box-shadow:
+                0px 0px 0px 4px #0000ff, /* Outer blue pixel border */
+                -4px 0px 0px 4px #0000b3, /* Left shadow */
+                4px 0px 0px 4px #0000b3,  /* Right shadow */
+                0px -4px 0px 4px #0000b3, /* Top shadow */
+                0px 4px 0px 4px #0000b3,  /* Bottom shadow */
+                8px 0px 0px 4px #00007a;  /* Extra pixel width for depth */
+        }
+        .left-balloon:hover {
+            transform: scale(1.1); /* Slight zoom on hover */
+            box-shadow:
+                0px 0px 0px 6px #ff0000, /* Outer red pixel border */
+                -6px 0px 0px 6px #b30000, /* Left shadow */
+                6px 0px 0px 6px #b30000,  /* Right shadow */
+                0px -6px 0px 6px #b30000, /* Top shadow */
+                0px 6px 0px 6px #b30000,  /* Bottom shadow */
+                10px 0px 0px 6px #7a0000;  /* Extra pixel width for depth */
+        }
+        .right-balloon:hover {
+            transform: scale(1.1); /* Slight zoom on hover */
+            box-shadow:
+                0px 0px 0px 6px #0000ff, /* Outer blue pixel border */
+                -6px 0px 0px 6px #0000b3, /* Left shadow */
+                6px 0px 0px 6px #0000b3,  /* Right shadow */
+                0px -6px 0px 6px #0000b3, /* Top shadow */
+                0px 6px 0px 6px #0000b3,  /* Bottom shadow */
+                10px 0px 0px 6px #00007a;  /* Extra pixel width for depth */
+        }
+    </style>
+    <script>
+        function scrollToImage() {
+            const imageSection = document.getElementById('bottom-image');
+            imageSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</head>
+<body class="text-gray-300">
+    <!-- Header -->
+    <p class="text-l pb-5">> welcome to my matrix...</p>
+    <header class="text-center py-10 sticky top-0">
+
+        <h1 class="text-6xl text-green-200 glow pb-4">Pritam Mallick</h1>
+        <p class="text-2xl pb-3">Software Engineer</p>
+        <div class="mt-2">
+            <!-- Email Button with Copy Function -->
+            <a href="mailto:mallickpritam1407@gmail.com" class="neon-button px-4 py-2 mx-2"
+               onclick="copyToClipboard('mallickpritam1407@gmail.com'); alert('Email copied!'); return false;">
+                Email <i class="fas fa-copy"></i>
+            </a>
+            <!-- LinkedIn Button with Copy Function -->
+            <a href="https://www.linkedin.com/in/pritammallick20" class="neon-button px-4 py-2 mx-2"
+               onclick="copyToClipboard('https://www.linkedin.com/in/pritammallick20'); alert('LinkedIn URL copied!'); return false;">
+                LinkedIn <i class="fas fa-copy"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main content with responsive margins -->
+    <div class="mx-4 md:mx-16 lg:mx-40">
+        <!-- About Me Section -->
+        <section class="py-8">
+            <h2 class="text-3xl text-green-300">About Me</h2>
+            <p class="mt-4">
+                Dedicated professional with 2+ years of experience in delivering high-quality projects within tight deadlines.
+                I have been awarded the ⭐Star Performer three times and received the 🏅Bravo Award twice for excellence in delivering quality software.
+            </p>
+        </section>
+
+        <!-- Professional Experience Section -->
+        <section class="py-8">
+            <h2 class="text-3xl text-green-300">Professional Experience</h2>
+            <div class="tab-header">Honeywell Connected Enterprise - Software Engineer 2</div>
+            <div class="terminal-card">
+                <p>July 2022 - Present</p>
+                
+                <br>
+                <h3>Cloud Integrations Lite</h3>
+                <ul class="mt-2 list-disc list-inside">
+                    <li>Participated in a 4-month project for building a home-grown and cloud-agnostic Integration registration and runtime system for the Honeywell Connected-Aero business unit. Owned the entire requirement for the scheduler microservice.</li>
+                    <li>Researched, developed, documented and profiled the performance of a Job scheduler-microservice with database persistence, fault-tolerance and non-cluster blind properties using Apache Quartz and JobRunnr open-source library</li>
+                    <li>Applied Caffeine in-memory caching mechanism in the Ingress, Egress, and Data Transformer microservices to reduce the access time for database and Azure Key-vault by approximately 18% against a 48-hour performance and regression test</li>
+                </ul>
+
+                <br>
+                <h3>Forge File Scan Service</h3>
+                <ul class="mt-2 list-disc list-inside">
+                    <li>Outlined the design of the file scan layer using Azure Defender and Blob storage, inspired by the Airport baggage scanner.</li>
+                    <li>Collaborated in LLD and developed the client-facing API for uploading files using the Shared Access Signature method.</li>
+                    <li>Achieved FedRAMP Compliance, delivered to PROD with 0 defects, and supported across multiple Honeywell platforms.</li>
+                </ul>
+
+                <br>
+                <h3>Integration Framework V3</h3>
+                <ul class="mt-2 list-disc list-inside">
+                    <li>Redesigned and engineered the next version of a SaaS framework allowing customers to build cloud-to-cloud integration of CMMS, LMS and WMS systems with Honeywell Performance Plus EPM platform through Azure IaaS/PaaS applications.</li>
+                    <li>Implemented a queueing mechanism to process the request asynchronously after responding with 202 status. Created Abstract-Factory pattern for actions and callback methods, builder pattern for custom errors and Azure SDK resources.</li>
+                    <li>Reduced API wait time by 75% and built integration templates for big customers, thus securing first-ever product revenue.</li>
+                </ul>
+            </div>
+
+            <div class="tab-header">3dify.me - Backend Developer</div>
+            <div class="terminal-card">
+                <p>May 2022 - July 2022</p>
+
+                <br>
+                <h3>Image-to-3D Converter</h3>
+                <ul class="mt-2 list-disc list-inside">
+                    <li>Leveraged the principles of UV mapping and Computational Geometry to create add-on scripts in the Blender runtime engine that convert images uploaded by users into 3D models in a matter of seconds.</li>
+                    <li>Released the service to E-commerce platforms allowing them to generate interactive 3D versions of fashion products.</li>
+                    <li>Enhanced capability to recognise facial structures and identify beard patterns for application on 3D human models.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="py-8">
+            <h2 class="text-3xl text-green-300">Projects</h2>
+            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="terminal-card">
+                    <h3>Crypto Collector</h3>
+                    <p>Highly responsive and lightweight Next.js web app streaming real-time crypto prices from a PostgreSQL container.</p>
+                    <br>
+                    <a href="https://github.com/its-just-pritam/FomoFactory-CryptoCollector" target="blank" class="text-blue-300">View on GitHub <i class="fas fa-terminal"></i></a>
+                </div>
+                <div class="terminal-card">
+                    <h3>Jobmart.Ai</h3>
+                    <p>End-to-end public job marketplace automating the job-hunting process with Python, Django, and React.</p>
+                    <br>
+                    <a href="https://github.com/jobmart-ai" target="blank" class="text-blue-300">
+                    View on GitHub <i class="fas fa-terminal"></i></a>
+                </div>
+                <div class="terminal-card">
+                    <h3>Postman Collection Exporter - IntelliJ IDEA Plugin</h3>
+                    <p>Custom IntelliJ IDEA plugin exporting Postman Collection JSON files for testing Spring Boot applications.</p>
+                    <br>
+                    <a href="https://github.com/its-just-pritam/postman-collection-exporter" target="blank" class="text-blue-300">View on GitHub <i class="fas fa-terminal"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Competencies & Tech Stack -->
+        <section class="py-8">
+            <h2 class="text-3xl text-green-300">Key Competencies & Tech Stack</h2>
+            <div class="tab-header">Programming Languages, Frameworks and Deployment Tools</div>
+            <div class="terminal-card">
+                <div class="status-tag">Java</div>
+                <div class="status-tag">Spring Boot</div>
+                <div class="status-tag">Python</div>
+                <div class="status-tag">Django</div>
+                <div class="status-tag">C#</div>
+                <div class="status-tag">.NET</div>
+                <div class="status-tag">C++</div>
+                <div class="status-tag">React.js</div>
+                <div class="status-tag">Next.js</div>
+                <div class="status-tag">Express.js</div>
+                <div class="status-tag">Docker</div>
+                <div class="status-tag">Swarm</div>
+                <div class="status-tag">Kubernetes</div>
+                <div class="status-tag">Git</div>
+            </div>
+
+            <div class="tab-header">Technologies, Specializations, Industrial Practices and Disciplines</div>
+            <div class="terminal-card">
+                <div class="status-tag">MySQL</div>
+                <div class="status-tag">PostgreSQL</div>
+                <div class="status-tag">MongoDB</div>
+                <div class="status-tag">Microsoft Azure</div>
+                <div class="status-tag">Redux</div>
+                <div class="status-tag">Apache Quartz</div>
+                <div class="status-tag">Apache Kafka</div>
+                <div class="status-tag">Spring Scheduler</div>
+                <div class="status-tag">Next.js</div>
+                <div class="status-tag">Apache NiFi</div>
+                <div class="status-tag">ETL</div>
+                <div class="status-tag">HLD</div>
+                <div class="status-tag">LLD</div>
+                <div class="status-tag">Design Documentation</div>
+                <div class="status-tag">Liquid Engine</div>
+                <div class="status-tag">Integrations</div>
+                <div class="status-tag">OOPS</div>
+                <div class="status-tag">CI/CD</div>
+                <div class="status-tag">Plugin Development</div>
+                <div class="status-tag">Prompt Engineering</div>
+                <div class="status-tag">Operating Systems</div>
+                <div class="status-tag">Computer Networks</div>
+                <div class="status-tag">Distributed Systems</div>
+                <div class="status-tag">Generative AI</div>
+                <div class="status-tag">RAG</div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="py-8">
+            <h2 class="text-3xl text-green-300">Education</h2>
+            <div class="tab-header">Indian Institute of Technology, Kharagpur</div>
+            <div class="terminal-card">
+                <h3>Computer Science and Engineering</h3>
+                <p>Bachelor of Technology [2018-22]</p>
+                <p>CGPA: 8.42</p>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="py-8">
+            <h2 class="text-3xl text-green-300">Certifications</h2>
+            <div class="terminal-card mt-4">
+                <ul class="mt-2 list-disc list-inside">
+                    <li>Azure: AZ-900 Fundamentals - Microsoft</li>
+                    <li>Docker Mastery: with Kubernetes + Swarm - Udemy</li>
+                    <li>Advanced Java Programming - LinkedIn</li>
+                    <li>Spring + Apache Kafka in microservice - Udemy</li>
+                    <li>Applied Generative AI and Natural Language Processing - Udemy</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-6 bg-black text-center text-gray-500">
+        <p>&copy; 2024 Pritam Mallick | Built with Tailwind CSS</p>
+        <br><br><br>
+        <button class="text-green-200 glow pb-4 dropbtn text-4xl" onclick="scrollToImage()">
+            Your way out <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="image-section" id="bottom-image">
+            <img src="neo2.jpeg" alt="Placeholder Image">
+
+            <!-- Floating Balloons -->
+            <a href="https://www.linkedin.com/in/pritammallick20">
+                <div class="balloon left-balloon">
+                    <p class="text-4xl text-white">
+                        Red Pill
+                    </p>
+                    <p class="text-xs text-white">
+                        You believe I'm the ONE!
+                    </p>
+                </div>
+            </a>
+            <a href="#">
+                <div class="balloon right-balloon">
+                    <p class="text-4xl text-white">
+                        Blue Pill
+                    </p>
+                    <p class="text-xs text-white">
+                        Go back to the matrix...
+                    </p>
+                </div>
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript function to copy content to clipboard -->
+    <script>
+        function copyToClipboard(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+        }
+    </script>
+</body>
+</html>
