@@ -157,7 +157,6 @@
             text-decoration: none; /* No underline */
             display: block; /* Block display */
         }
-
         .dropdown-content a:hover {
             background-color: #f1f1f1; /* Hover effect */
         }
@@ -165,19 +164,23 @@
             display: block; /* Show the dropdown on hover */
         }
         .image-section {
-            height: 100vh; /* Full viewport height for this section */
-            background-color: #000; /* Black background for contrast */
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            background-color: #000;
         }
-        .image-section img {
+        .image-balloon-wrapper {
+            display: flex; /* Align balloons and image in a row */
+            align-items: center; /* Vertically center balloons relative to image */
+            position: relative;
+        }
+        .image-balloon-wrapper img {
             max-width: 100%;
             height: auto;
             border-radius: 10px;
         }
         .balloon {
-            position: absolute;
             padding: 20px;
             border-radius: 50px;
             font-size: 1.5rem;
@@ -185,60 +188,27 @@
             text-align: center;
             width: 300px;
             height: 100px;
+            display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 250px;
             transition: transform 0.3s ease-in-out;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        .balloon a {
-            text-decoration: none;
-            color: black;
+            position: relative;
         }
         .left-balloon {
-            left: 550px; /* Adjust the position */
-            top: 455%;
-            transform: translateY(-30%);
             background-color: #ff4d4d;
-            box-shadow:
-                0px 0px 0px 4px #ff0000, /* Outer red pixel border */
-                -4px 0px 0px 4px #b30000, /* Left shadow */
-                4px 0px 0px 4px #b30000,  /* Right shadow */
-                0px -4px 0px 4px #b30000, /* Top shadow */
-                0px 4px 0px 4px #b30000,  /* Bottom shadow */
-                8px 0px 0px 4px #7a0000;  /* Extra pixel width for depth */
+            box-shadow: 0px 0px 0px 4px #ff0000, -4px 0px 0px 4px #b30000, 4px 0px 0px 4px #b30000, 0px -4px 0px 4px #b30000, 0px 4px 0px 4px #b30000, 8px 0px 0px 4px #7a0000;
+            margin-right: -28px; /* Space between balloon and image */
         }
         .right-balloon {
-            right: 550px; /* Adjust the position */
-            top: 455%;
-            transform: translateY(-30%);
             background-color: #4040ff;
-            box-shadow:
-                0px 0px 0px 4px #0000ff, /* Outer blue pixel border */
-                -4px 0px 0px 4px #0000b3, /* Left shadow */
-                4px 0px 0px 4px #0000b3,  /* Right shadow */
-                0px -4px 0px 4px #0000b3, /* Top shadow */
-                0px 4px 0px 4px #0000b3,  /* Bottom shadow */
-                8px 0px 0px 4px #00007a;  /* Extra pixel width for depth */
+            box-shadow: 0px 0px 0px 4px #0000ff, -4px 0px 0px 4px #0000b3, 4px 0px 0px 4px #0000b3, 0px -4px 0px 4px #0000b3, 0px 4px 0px 4px #0000b3, 8px 0px 0px 4px #00007a;
+            margin-left: -28px; /* Space between balloon and image */
         }
-        .left-balloon:hover {
-            transform: scale(1.1); /* Slight zoom on hover */
-            box-shadow:
-                0px 0px 0px 6px #ff0000, /* Outer red pixel border */
-                -6px 0px 0px 6px #b30000, /* Left shadow */
-                6px 0px 0px 6px #b30000,  /* Right shadow */
-                0px -6px 0px 6px #b30000, /* Top shadow */
-                0px 6px 0px 6px #b30000,  /* Bottom shadow */
-                10px 0px 0px 6px #7a0000;  /* Extra pixel width for depth */
-        }
-        .right-balloon:hover {
-            transform: scale(1.1); /* Slight zoom on hover */
-            box-shadow:
-                0px 0px 0px 6px #0000ff, /* Outer blue pixel border */
-                -6px 0px 0px 6px #0000b3, /* Left shadow */
-                6px 0px 0px 6px #0000b3,  /* Right shadow */
-                0px -6px 0px 6px #0000b3, /* Top shadow */
-                0px 6px 0px 6px #0000b3,  /* Bottom shadow */
-                10px 0px 0px 6px #00007a;  /* Extra pixel width for depth */
+        .left-balloon:hover, .right-balloon:hover {
+            transform: scale(1.1) translateY(10px);
+            transition: ;
         }
     </style>
     <script>
@@ -437,30 +407,27 @@
             Your way out <i class="fas fa-chevron-down"></i>
         </button>
         <div class="image-section" id="bottom-image">
-            <img src="neo2.jpeg" alt="Placeholder Image">
+            <div class="image-balloon-wrapper">
+                <a href="https://www.linkedin.com/in/pritammallick20">
+                    <div class="balloon left-balloon">
+                        <p class="text-xl text-white">
+                            You believe I <br>am the ONE!
+                        </p>
+                    </div>
+                </a>
 
-            <!-- Floating Balloons -->
-            <a href="https://www.linkedin.com/in/pritammallick20">
-                <div class="balloon left-balloon">
-                    <p class="text-4xl text-white">
-                        Red Pill
-                    </p>
-                    <p class="text-xs text-white">
-                        You believe I'm the ONE!
-                    </p>
-                </div>
-            </a>
-            <a href="#">
-                <div class="balloon right-balloon">
-                    <p class="text-4xl text-white">
-                        Blue Pill
-                    </p>
-                    <p class="text-xs text-white">
-                        Go back to the matrix...
-                    </p>
-                </div>
-            </a>
+                <img src="neo2.jpeg" alt="Placeholder Image" />
+
+                <a href="#">
+                    <div class="balloon right-balloon">
+                        <p class="text-xl text-white">
+                            Go back to <br>the matrix...
+                        </p>
+                    </div>
+                </a>
+            </div>
         </div>
+
     </footer>
 
     <!-- JavaScript function to copy content to clipboard -->
