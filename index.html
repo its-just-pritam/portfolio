@@ -210,6 +210,25 @@
             transform: scale(1.1) translateY(10px);
             transition: ;
         }
+        /* Media query for desktops (1024px and larger) */
+        @media screen and (max-width: 1024px) {
+            .image-section {
+                padding: 40px; /* Increase padding on larger screens */
+            }
+            .balloon {
+                font-size: 0.8rem; /* Even larger text */
+                width: 150px; /* Increase size */
+                height: 50px;
+            }
+            .left-balloon {
+                margin-right: -100px;
+                margin-bottom: -60px;
+            }
+            .right-balloon {
+                margin-left: -100px;
+                margin-bottom: -60px;
+            }
+        }
     </style>
     <script>
         function scrollToImage() {
@@ -410,7 +429,7 @@
             <div class="image-balloon-wrapper">
                 <a href="https://www.linkedin.com/in/pritammallick20">
                     <div class="balloon left-balloon">
-                        <p class="text-xl text-white">
+                        <p class="text-white">
                             You believe I <br>am the ONE!
                         </p>
                     </div>
@@ -420,7 +439,7 @@
 
                 <a href="#">
                     <div class="balloon right-balloon">
-                        <p class="text-xl text-white">
+                        <p class="text-white">
                             Go back to <br>the matrix...
                         </p>
                     </div>
