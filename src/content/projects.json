@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Streamgres",
+    "stack": "Spring Boot, TimescaleDB, gRPC, Docker",
+    "description": "Centralized event streaming platform with broker APIs, bi-directional streaming, consistent hashing, and real-time topic configurations.",
+    "link": "https://github.com/its-just-pritam"
+  },
+  {
+    "name": "Quickbook",
+    "stack": "Spring Boot, MongoDB, TimescaleDB",
+    "description": "Collaborative document editor using operational transformation and timeseries-backed document operations.",
+    "link": "https://github.com/its-just-pritam"
+  },
+  {
+    "name": "CryptoCollector",
+    "stack": "Spring Boot, Next.js, PostgreSQL, Redux",
+    "description": "Responsive crypto listing app that streams real-time prices from a PostgreSQL-backed service stack.",
+    "link": "https://github.com/its-just-pritam/FomoFactory-CryptoCollector"
+  },
+  {
+    "name": "Postman Collection Exporter",
+    "stack": "IntelliJ IDEA Plugin, Kotlin",
+    "description": "Custom IntelliJ plugin that exports Postman Collection JSON files for testing complex Spring Boot applications.",
+    "link": "https://github.com/its-just-pritam/postman-collection-exporter"
+  }
+]

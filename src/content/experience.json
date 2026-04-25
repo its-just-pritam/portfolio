@@ -1,0 +1,64 @@
+[
+  {
+    "company": "Enphase Energy",
+    "role": "Senior Software Engineer",
+    "period": "December 2024 - Present",
+    "work": [
+      {
+        "title": "Events and Alarms Platform",
+        "bullets": [
+          "Migrated the events data platform from a monolith to microservices, including data backfilling from MySQL to Cassandra.",
+          "Built event-driven consumers with reactive Java tools to process 100 million records daily after decoupling cron-based workflows.",
+          "Used gRPC pipelines to stream long-term event records for customer-facing download features.",
+          "Scaled and tuned Kafka consumers to handle 50x production traffic with multithreading and partitioning."
+        ]
+      }
+    ]
+  },
+  {
+    "company": "Honeywell",
+    "role": "Software Engineer 2",
+    "period": "July 2022 - December 2024",
+    "work": [
+      {
+        "title": "Cloud Integrations Lite",
+        "bullets": [
+          "Engineered a cloud-agnostic integration registration and runtime system with an event-driven architecture.",
+          "Researched, developed, documented, and profiled a scheduler microservice with persistence and fault tolerance using Apache Quartz and JobRunr.",
+          "Applied Caffeine caching across microservices to reduce database and vault access time by 18%."
+        ]
+      },
+      {
+        "title": "Forge File Scan Service",
+        "bullets": [
+          "Outlined the file-scan layer with Azure Defender and Blob Storage to detect malware during data ingestion.",
+          "Developed the client-facing upload API using Shared Access Signature flows.",
+          "Achieved FedRAMP compliance, shipped to production with zero defects, and supported multiple enterprise platforms."
+        ]
+      },
+      {
+        "title": "Integration Framework V3",
+        "bullets": [
+          "Redesigned and released a new version of Honeywell's APM integration framework for customer cloud deployments.",
+          "Implemented queue-based asynchronous request processing to resolve API timeouts and retry failures.",
+          "Optimized API wait time by 75% and built integration templates that helped secure the product's first revenue."
+        ]
+      }
+    ]
+  },
+  {
+    "company": "3dify.me",
+    "role": "Backend Developer",
+    "period": "May 2022 - July 2022",
+    "work": [
+      {
+        "title": "Image-to-3D Converter",
+        "bullets": [
+          "Built a real-time image-to-3D converter in Blender using OpenCV and computational geometry.",
+          "Released the service for ecommerce platforms to generate interactive 3D versions of fashion products.",
+          "Improved recognition of facial structures and beard patterns for 3D human models."
+        ]
+      }
+    ]
+  }
+]

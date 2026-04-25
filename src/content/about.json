@@ -1,0 +1,62 @@
+{
+  "commands": ["help", "about", "experience", "projects", "skills", "education", "certs", "contact", "clear"],
+  "intro": {
+    "name": "Pritam Mallick",
+    "headline": "Senior Software Engineer building event-driven backend platforms, streaming systems, and cloud integrations.",
+    "eyebrow": "boot sequence complete",
+    "statusTags": ["root access: earned", "status: building scalable systems"],
+    "quickActions": [
+      { "label": "./experience.sh", "command": "experience" },
+      { "label": "./projects.sh", "command": "projects" }
+    ],
+    "copyEmailLabel": "copy email",
+    "copyEmailValue": "mallickpritam1407@gmail.com"
+  },
+  "about": {
+    "summary": "Pritam Mallick | Senior Software Engineer | IIT Kharagpur CSE",
+    "details": [
+      "Backend and platform engineer with 3+ years of experience building production systems for cloud integrations, event processing, and high-scale data platforms.",
+      "Currently at Enphase Energy, focused on microservices migration, event-driven pipelines, gRPC streaming, and Kafka-backed systems that operate reliably under load.",
+      "Focus areas: distributed systems, backend engineering, streaming architecture, developer tooling, and product-minded execution."
+    ]
+  },
+  "education": {
+    "institution": "Indian Institute of Technology, Kharagpur",
+    "degree": "Bachelor of Technology in Computer Science and Engineering",
+    "period": "2018 - 2022 | CGPA 8.42"
+  },
+  "contact": {
+    "email": {
+      "label": "mail",
+      "value": "mallickpritam1407@gmail.com",
+      "href": "mailto:mallickpritam1407@gmail.com"
+    },
+    "linkedin": {
+      "label": "linkedin",
+      "value": "/in/pritammallick20",
+      "href": "https://www.linkedin.com/in/pritammallick20"
+    },
+    "github": {
+      "label": "github",
+      "value": "/its-just-pritam",
+      "href": "https://github.com/its-just-pritam"
+    }
+  },
+  "profile": {
+    "image": "/neo1.png",
+    "imageAlt": "Pritam portrait",
+    "meta": [
+      "user: pritam-mallick",
+      "role: senior-software-engineer",
+      "org: uberall",
+      "location: bangalore, india"
+    ]
+  },
+  "footer": {
+    "linkLabel": "connect --linkedin",
+    "linkHref": "https://www.linkedin.com/in/pritammallick20",
+    "text": "For teams that want crisp engineering, calm execution, and systems that stay fast and dependable at scale.",
+    "image": "/neo2.jpeg",
+    "imageAlt": "The Matrix reference"
+  }
+}
