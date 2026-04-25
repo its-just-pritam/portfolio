@@ -6,6 +6,14 @@ import projects from './content/projects.json'
 import skillGroups from './content/skills.json'
 
 const commands = aboutContent.commands
+const asciiName = String.raw` /$$$$$$$           /$$   /$$                                   /$$      /$$           /$$ /$$ /$$           /$$      
+| $$__  $$         |__/  | $$                                  | $$$    /$$$          | $$| $$|__/          | $$      
+| $$  \ $$ /$$$$$$  /$$ /$$$$$$    /$$$$$$  /$$$$$$/$$$$       | $$$$  /$$$$  /$$$$$$ | $$| $$ /$$  /$$$$$$$| $$   /$$
+| $$$$$$$//$$__  $$| $$|_  $$_/   |____  $$| $$_  $$_  $$      | $$ $$/$$ $$ |____  $$| $$| $$| $$ /$$_____/| $$  /$$/
+| $$____/| $$  \__/| $$  | $$      /$$$$$$$| $$ \ $$ \ $$      | $$  $$$| $$  /$$$$$$$| $$| $$| $$| $$      | $$$$$$/ 
+| $$     | $$      | $$  | $$ /$$ /$$__  $$| $$ | $$ | $$      | $$\  $ | $$ /$$__  $$| $$| $$| $$| $$      | $$_  $$ 
+| $$     | $$      | $$  |  $$$$/|  $$$$$$$| $$ | $$ | $$      | $$ \/  | $$|  $$$$$$$| $$| $$| $$|  $$$$$$$| $$ \  $$
+|__/     |__/      |__/   \___/   \_______/|__/ |__/ |__/      |__/     |__/ \_______/|__/|__/|__/ \_______/|__/  \__/`
 
 function CopyIcon() {
   return (
@@ -110,9 +118,9 @@ function App() {
 
   const outputs = {
     help: (
-      <div className="stack">
+      <div className="stack help-output">
         <p>Available commands:</p>
-        <div className="chip-row">
+        <div className="chip-row compact-chip-row">
           {commands.map((command) => (
             <CommandChip key={command} command={command} onRun={submitCommand} />
           ))}
@@ -235,7 +243,7 @@ function App() {
             <div className="hero-grid">
               <div className="hero-copy">
                 <p className="eyebrow">{aboutContent.intro.eyebrow}</p>
-                <h1>{aboutContent.intro.name}</h1>
+                <pre className="ascii-title" aria-label={aboutContent.intro.name}>{asciiName}</pre>
                 <p className="subtitle">{aboutContent.intro.headline}</p>
                 <div className="chip-row">
                   {aboutContent.intro.statusTags.map((tag) => (
@@ -246,12 +254,13 @@ function App() {
                 </div>
                 <div className="quick-actions">
                   {aboutContent.intro.quickActions.map((action) => (
-                    <button key={action.label} type="button" onClick={() => submitCommand(action.command)}>
-                      {action.label}
+                    <button key={action.label} type="button" className="cta-button" onClick={() => submitCommand(action.command)}>
+                      <span>{action.label}</span>
                     </button>
                   ))}
                   <button
                     type="button"
+                    className="cta-button cta-button-copy"
                     onClick={() => navigator.clipboard?.writeText(aboutContent.intro.copyEmailValue)}
                   >
                     <CopyIcon />
@@ -320,7 +329,7 @@ function App() {
               <span className="dot green" />
               <p>network beacon</p>
             </div>
-            <ExternalLink href={aboutContent.footer.linkHref} className="beacon-link">
+            <ExternalLink href={aboutContent.footer.linkHref} className="beacon-link cta-link">
               {aboutContent.footer.linkLabel}
             </ExternalLink>
             <p>{aboutContent.footer.text}</p>

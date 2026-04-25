@@ -43,12 +43,12 @@
     }
   },
   "profile": {
-    "image": "/neo1.jpeg",
+    "image": "/neo1.png",
     "imageAlt": "Pritam portrait",
     "meta": [
-      "user: pritam",
+      "user: pritam-mallick",
       "role: senior-software-engineer",
-      "org: enphase-energy",
+      "org: uberall",
       "location: bangalore, india"
     ]
   },
