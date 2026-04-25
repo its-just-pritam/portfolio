@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import aboutContent from './content/about.json'
 import certifications from './content/certifications.json'
 import experience from './content/experience.json'
@@ -6,6 +6,45 @@ import projects from './content/projects.json'
 import skillGroups from './content/skills.json'
 
 const commands = aboutContent.commands
+
+function CopyIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="icon-inline">
+      <path
+        d="M9 9h9v11H9zM6 4h9v2H8v9H6z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function ExternalLinkIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="icon-inline">
+      <path
+        d="M14 5h5v5M19 5l-8 8M19 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function ExternalLink({ href, className = 'external-link', children }) {
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className={className}>
+      <span>{children}</span>
+      <ExternalLinkIcon />
+    </a>
+  )
+}
 
 function PromptLine({ command, children }) {
   return (
@@ -22,131 +61,34 @@ function PromptLine({ command, children }) {
   )
 }
 
+function CommandChip({ command, onRun }) {
+  return (
+    <button type="button" className="tag command-chip" onClick={() => onRun(command)}>
+      {command}
+    </button>
+  )
+}
+
+function ContactRow({ label, children }) {
+  return (
+    <div className="contact-row">
+      <span className="contact-label">{label}</span>
+      <span className="contact-sep">:</span>
+      <span className="contact-value">{children}</span>
+    </div>
+  )
+}
+
 function App() {
   const [input, setInput] = useState('')
   const [history, setHistory] = useState(['help', 'about'])
   const shellRef = useRef(null)
 
-  const outputs = useMemo(
-    () => ({
-      help: (
-        <div>
-          <p>Available commands:</p>
-          <div className="chip-row">
-            {commands.map((command) => (
-              <span key={command} className="tag">
-                {command}
-              </span>
-            ))}
-          </div>
-        </div>
-      ),
-      about: (
-        <div className="stack">
-          <p>{aboutContent.about.summary}</p>
-          {aboutContent.about.details.map((detail) => (
-            <p key={detail}>{detail}</p>
-          ))}
-        </div>
-      ),
-      experience: (
-        <div className="stack">
-          {experience.map((job) => (
-            <article key={job.company} className="panel">
-              <div className="panel-heading">
-                <strong>{job.company}</strong>
-                <span>{job.role}</span>
-                <span>{job.period}</span>
-              </div>
-              {job.work.map((entry) => (
-                <div key={entry.title} className="entry">
-                  <h3>{entry.title}</h3>
-                  <ul>
-                    {entry.bullets.map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </article>
-          ))}
-        </div>
-      ),
-      projects: (
-        <div className="project-grid">
-          {projects.map((project) => (
-            <article key={project.name} className="panel">
-              <div className="panel-heading">
-                <strong>{project.name}</strong>
-                <span>{project.stack}</span>
-              </div>
-              <p>{project.description}</p>
-              <a href={project.link} target="_blank" rel="noreferrer">
-                open --repo
-              </a>
-            </article>
-          ))}
-        </div>
-      ),
-      skills: (
-        <div className="stack">
-          <div>
-            <p className="section-kicker">toolchain.list</p>
-            <div className="chip-row">
-              {skillGroups.frameworks.map((skill) => (
-                <span key={skill} className="tag">
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div>
-            <p className="section-kicker">systems.list</p>
-            <div className="chip-row">
-              {skillGroups.systems.map((skill) => (
-                <span key={skill} className="tag">
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      ),
-      education: (
-        <article className="panel">
-          <div className="panel-heading">
-            <strong>{aboutContent.education.institution}</strong>
-            <span>{aboutContent.education.degree}</span>
-            <span>{aboutContent.education.period}</span>
-          </div>
-        </article>
-      ),
-      certs: (
-        <ul>
-          {certifications.map((cert) => (
-            <li key={cert}>{cert}</li>
-          ))}
-        </ul>
-      ),
-      contact: (
-        <div className="stack">
-          <p>
-            {aboutContent.contact.email.label.padEnd(9, ' ')}
-            : <a href={aboutContent.contact.email.href}>{aboutContent.contact.email.value}</a>
-          </p>
-          <p>
-            {aboutContent.contact.linkedin.label.padEnd(9, ' ')}
-            : <a href={aboutContent.contact.linkedin.href} target="_blank" rel="noreferrer">{aboutContent.contact.linkedin.value}</a>
-          </p>
-          <p>
-            {aboutContent.contact.github.label.padEnd(9, ' ')}
-            : <a href={aboutContent.contact.github.href} target="_blank" rel="noreferrer">{aboutContent.contact.github.value}</a>
-          </p>
-        </div>
-      ),
-    }),
-    [],
-  )
+  const scrollShellToBottom = () => {
+    requestAnimationFrame(() => {
+      shellRef.current?.scrollTo({ top: shellRef.current.scrollHeight, behavior: 'smooth' })
+    })
+  }
 
   const submitCommand = (rawValue) => {
     const value = rawValue.trim().toLowerCase()
@@ -163,9 +105,118 @@ function App() {
 
     setHistory((current) => [...current, value])
     setInput('')
-    requestAnimationFrame(() => {
-      shellRef.current?.scrollTo({ top: shellRef.current.scrollHeight, behavior: 'smooth' })
-    })
+    scrollShellToBottom()
+  }
+
+  const outputs = {
+    help: (
+      <div className="stack">
+        <p>Available commands:</p>
+        <div className="chip-row">
+          {commands.map((command) => (
+            <CommandChip key={command} command={command} onRun={submitCommand} />
+          ))}
+        </div>
+      </div>
+    ),
+    about: (
+      <div className="stack">
+        <p>{aboutContent.about.summary}</p>
+        {aboutContent.about.details.map((detail) => (
+          <p key={detail}>{detail}</p>
+        ))}
+      </div>
+    ),
+    experience: (
+      <div className="stack">
+        {experience.map((job) => (
+          <article key={job.company} className="panel">
+            <div className="panel-heading">
+              <strong>{job.company}</strong>
+              <span>{job.role}</span>
+              <span>{job.period}</span>
+            </div>
+            {job.work.map((entry) => (
+              <div key={entry.title} className="entry">
+                <h3>{entry.title}</h3>
+                <ul>
+                  {entry.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </article>
+        ))}
+      </div>
+    ),
+    projects: (
+      <div className="project-grid">
+        {projects.map((project) => (
+          <article key={project.name} className="panel">
+            <div className="panel-heading">
+              <strong>{project.name}</strong>
+              <span>{project.stack}</span>
+            </div>
+            <p>{project.description}</p>
+            <ExternalLink href={project.link}>open --repo</ExternalLink>
+          </article>
+        ))}
+      </div>
+    ),
+    skills: (
+      <div className="stack">
+        <div>
+          <p className="section-kicker">toolchain.list</p>
+          <div className="chip-row">
+            {skillGroups.frameworks.map((skill) => (
+              <span key={skill} className="tag">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div>
+          <p className="section-kicker">systems.list</p>
+          <div className="chip-row">
+            {skillGroups.systems.map((skill) => (
+              <span key={skill} className="tag">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    ),
+    education: (
+      <article className="panel">
+        <div className="panel-heading">
+          <strong>{aboutContent.education.institution}</strong>
+          <span>{aboutContent.education.degree}</span>
+          <span>{aboutContent.education.period}</span>
+        </div>
+      </article>
+    ),
+    certs: (
+      <ul>
+        {certifications.map((cert) => (
+          <li key={cert}>{cert}</li>
+        ))}
+      </ul>
+    ),
+    contact: (
+      <div className="stack">
+        <ContactRow label={aboutContent.contact.email.label}>
+          <a href={aboutContent.contact.email.href}>{aboutContent.contact.email.value}</a>
+        </ContactRow>
+        <ContactRow label={aboutContent.contact.linkedin.label}>
+          <ExternalLink href={aboutContent.contact.linkedin.href}>{aboutContent.contact.linkedin.value}</ExternalLink>
+        </ContactRow>
+        <ContactRow label={aboutContent.contact.github.label}>
+          <ExternalLink href={aboutContent.contact.github.href}>{aboutContent.contact.github.value}</ExternalLink>
+        </ContactRow>
+      </div>
+    ),
   }
 
   return (
@@ -203,7 +254,8 @@ function App() {
                     type="button"
                     onClick={() => navigator.clipboard?.writeText(aboutContent.intro.copyEmailValue)}
                   >
-                    {aboutContent.intro.copyEmailLabel}
+                    <CopyIcon />
+                    <span>{aboutContent.intro.copyEmailLabel}</span>
                   </button>
                 </div>
               </div>
@@ -225,7 +277,7 @@ function App() {
             <span className="dot red" />
             <span className="dot yellow" />
             <span className="dot green" />
-            <p>interactive shell</p>
+            <p>interactive resume shell</p>
           </div>
 
           <div className="shell-output" ref={shellRef}>
@@ -268,9 +320,9 @@ function App() {
               <span className="dot green" />
               <p>network beacon</p>
             </div>
-            <a href={aboutContent.footer.linkHref} target="_blank" rel="noreferrer" className="beacon-link">
+            <ExternalLink href={aboutContent.footer.linkHref} className="beacon-link">
               {aboutContent.footer.linkLabel}
-            </a>
+            </ExternalLink>
             <p>{aboutContent.footer.text}</p>
           </article>
 
@@ -290,4 +342,3 @@ function App() {
 }
 
 export default App
-

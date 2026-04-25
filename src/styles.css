@@ -174,6 +174,26 @@ button {
   color: #b7d4ff;
 }
 
+.command-chip {
+  appearance: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.command-chip:hover,
+.command-chip:focus-visible,
+.quick-actions button:hover,
+.beacon-link:hover,
+.shell-input input:focus,
+.external-link:hover {
+  box-shadow: 0 0 0 1px rgba(112, 186, 255, 0.18), 0 0 18px rgba(75, 126, 216, 0.24);
+}
+
+.command-chip:hover,
+.command-chip:focus-visible {
+  border-color: rgba(112, 186, 255, 0.45);
+  transform: translateY(-1px);
+}
+
 .quick-actions {
   display: flex;
   flex-wrap: wrap;
@@ -182,6 +202,9 @@ button {
 }
 
 .quick-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   min-height: 42px;
   padding: 0 14px;
   border: 1px solid rgba(112, 186, 255, 0.45);
@@ -189,10 +212,32 @@ button {
   color: #d7e7ff;
 }
 
-.quick-actions button:hover,
-.beacon-link:hover,
-.shell-input input:focus {
-  box-shadow: 0 0 0 1px rgba(112, 186, 255, 0.18), 0 0 18px rgba(75, 126, 216, 0.24);
+.icon-inline {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+}
+
+.external-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 9ch auto minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: 6px;
+}
+
+.contact-label,
+.contact-sep {
+  color: #aec5e7;
+}
+
+.contact-value {
+  min-width: 0;
 }
 
 .profile-panel {
@@ -307,14 +352,22 @@ li + li {
 
 .shell-input {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: center;
   gap: 10px;
   padding: 18px 20px 20px;
   border-top: 1px solid rgba(97, 155, 255, 0.18);
 }
 
+.shell-input .prompt-line {
+  flex-wrap: nowrap;
+  align-items: center;
+  white-space: nowrap;
+}
+
 .shell-input input {
   min-width: 0;
+  width: 100%;
   min-height: 42px;
   border: 1px solid rgba(97, 155, 255, 0.24);
   background: rgba(10, 15, 24, 0.96);
@@ -330,6 +383,7 @@ li + li {
 .beacon-link {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   min-height: 40px;
   margin: 18px;
   padding: 0 12px;
@@ -351,12 +405,26 @@ li + li {
   .hero-grid,
   .project-grid,
   .footer-grid,
-  .shell-input {
+  .contact-row {
     grid-template-columns: 1fr;
   }
 
   .shell-input {
+    grid-template-columns: 1fr;
     gap: 8px;
+  }
+
+  .shell-input .prompt-line {
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+
+  .contact-row {
+    row-gap: 2px;
+  }
+
+  .contact-sep {
+    display: none;
   }
 
   .layout {
