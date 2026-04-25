@@ -1,0 +1,35 @@
+{
+  "frameworks": [
+    "Java",
+    "Spring Boot",
+    "Spring WebFlux",
+    "Python",
+    "C++",
+    "React.js",
+    "Next.js",
+    "Express.js",
+    "Docker",
+    "Swarm",
+    "Kubernetes",
+    "Git",
+    "Shell Scripting"
+  ],
+  "systems": [
+    "PostgreSQL",
+    "MySQL",
+    "Cassandra",
+    "MongoDB",
+    "TimescaleDB",
+    "Redis",
+    "Microsoft Azure",
+    "Apache Quartz",
+    "Apache Kafka",
+    "gRPC",
+    "Distributed Systems",
+    "RAG",
+    "Linux",
+    "Integrations",
+    "CI/CD",
+    "Design Documentation"
+  ]
+}
