@@ -321,8 +321,8 @@ function App() {
           </form>
         </section>
 
-        <section className="footer-grid">
-          <article className="terminal-window mini-panel">
+        <section className="footer-grid footer-grid-single">
+          <article className="terminal-window mini-panel footer-beacon-panel">
             <div className="window-bar">
               <span className="dot red" />
               <span className="dot yellow" />
@@ -333,16 +333,6 @@ function App() {
               {aboutContent.footer.linkLabel}
             </ExternalLink>
             <p>{aboutContent.footer.text}</p>
-          </article>
-
-          <article className="terminal-window mini-panel image-panel">
-            <div className="window-bar">
-              <span className="dot red" />
-              <span className="dot yellow" />
-              <span className="dot green" />
-              <p>matrix escape</p>
-            </div>
-            <img src={aboutContent.footer.image} alt={aboutContent.footer.imageAlt} className="matrix-image" />
           </article>
         </section>
       </main>
