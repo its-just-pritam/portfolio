@@ -43,7 +43,7 @@
     }
   },
   "profile": {
-    "image": "/neo1.png",
+    "image": "/portfolio/neo1.png",
     "imageAlt": "Pritam portrait",
     "meta": [
       "user: pritam-mallick",
@@ -56,7 +56,7 @@
     "linkLabel": "connect --linkedin",
     "linkHref": "https://www.linkedin.com/in/pritammallick20",
     "text": "For teams that want crisp engineering, calm execution, and systems that stay fast and dependable at scale.",
-    "image": "/neo2.jpeg",
+    "image": "/portfolio/neo2.jpeg",
     "imageAlt": "The Matrix reference"
   }
 }
